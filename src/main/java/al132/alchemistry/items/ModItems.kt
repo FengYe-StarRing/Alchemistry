@@ -31,9 +31,9 @@ object ModItems {
     }
     var slotFiller = ItemSlotFiller()
 
-    var elements = ItemElement("element")
     var compounds = ItemCompound("compound")
     var ingots = ItemElementIngot("ingot")
+    var elements = ingots
     val periodicDankMolecule = ItemPeriodicDiagram()
 
 

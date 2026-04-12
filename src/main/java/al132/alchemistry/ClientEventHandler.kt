@@ -23,19 +23,4 @@ class ClientEventHandler {
             }
         }
     }
-
-    @SubscribeEvent
-    fun tooltipEvent(e: ItemTooltipEvent) {
-        val stack = e.itemStack
-        if (stack.item is ItemFood && stack.hasTagCompound()
-                && stack.tagCompound!!.hasKey("alchemistryPotion")
-                && !stack.tagCompound!!.getBoolean("alchemistrySalted")) {
-            val molecule = ItemCompound.getDankMoleculeForMeta(stack.tagCompound!!.getInteger("alchemistryPotion"))
-            if (molecule != null) {
-                val compoundName = CompoundRegistry[molecule.meta]?.toItemStack(1)?.displayName
-                        ?: "<Invalid Compound>"
-                e.toolTip.add("§b" + "spiked_food.tooltip".translate() + " " + compoundName + "§r")
-            }
-        }
-    }
 }

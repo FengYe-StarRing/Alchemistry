@@ -11,7 +11,7 @@ object Reference {
 
     const val MODID = "alchemistry"
     const val MODNAME = "Alchemistry"
-    const val VERSION = "1.12.2-42"
+    const val VERSION = "1.12.2-1.0.0"
     const val DEPENDENCIES = "required-after:forgelin;required-after:alib;after:crafttweaker;before:jei;"
     val DECIMAL_FORMAT = DecimalFormat("#0.00")
 

@@ -44,10 +44,11 @@ open class CommonProxy {
         PacketHandler.registerMessages(Reference.MODID)
 
         if (Loader.isModLoaded("crafttweaker")) CraftTweakerAPI.tweaker.loadScript(false, "alchemistry")
+
+        ModRecipes.initOredict()
     }
 
     open fun init(e: FMLInitializationEvent) {
-        ModRecipes.initOredict()
         Reference.configDir
                 .listFiles(FileFilter { it.extension.toLowerCase() == "xml" })
                 .forEach { XMLRecipeParser().init(it.name) }
