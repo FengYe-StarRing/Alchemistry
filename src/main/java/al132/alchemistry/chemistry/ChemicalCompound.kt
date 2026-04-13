@@ -12,8 +12,8 @@ import java.awt.Color
 inline fun Compound(crossinline init: ChemicalCompound.() -> Unit) = ChemicalCompound().apply { init() }
 
 private fun find(name: String): ICompoundComponent? {
-    ElementRegistry[name]?.let { return it }
-    CompoundRegistry[name]?.let { return it }
+    ElementRegistry.get(name)?.let { return it }
+    CompoundRegistry.get(name)?.let { return it.value }
     return null
 }
 
@@ -32,7 +32,8 @@ data class ChemicalCompound constructor(override var name: String = "",
                                         var shiftedSlots: Int = 0,
                                         var autoDissolverRecipe: Boolean = true,
                                         var components: List<CompoundPair> = ArrayList(),
-                                        var isInternalCompound: Boolean = true) : ICompoundComponent {
+                                        var isInternalCompound: Boolean = true,
+                                        override var materials: List<String> = ArrayList()) : ICompoundComponent {
 
     override val item: Item
         get() = ModItems.compounds
@@ -42,7 +43,7 @@ data class ChemicalCompound constructor(override var name: String = "",
     fun toItemStackList(): List<ItemStack> = components.mapTo(ArrayList()) { it.toStack() }
 
     override val meta: Int
-        get() = CompoundRegistry.getMeta(this.name)
+        get() = CompoundRegistry.get(this.name).key
 
     override fun toAbbreviatedString(): String {
         val builder = StringBuilder()

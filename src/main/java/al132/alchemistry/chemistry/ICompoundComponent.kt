@@ -12,6 +12,7 @@ interface ICompoundComponent {
     var name: String
     val item: Item
     val meta: Int
+    var materials: List<String>
     fun toItemStack(quantity: Int): ItemStack
     fun toAbbreviatedString(): String
 }

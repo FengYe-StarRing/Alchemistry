@@ -1,7 +1,6 @@
 package al132.alchemistry.items;
 
 import al132.alchemistry.chemistry.ChemicalCompound;
-import al132.alchemistry.chemistry.ChemicalElement;
 import al132.alchemistry.chemistry.CompoundRegistry;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.util.ITooltipFlag;
@@ -17,15 +16,15 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.List;
 import java.util.Map;
 
-public class ItemCompound extends ItemMetaBase {
-    public ItemCompound(String name) {
+public class ItemCompoundDust extends ItemMetaBase {
+    public ItemCompoundDust(String name) {
         super(name);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void registerModel() {
-        for(Map.Entry<Integer,ChemicalCompound> compound : CompoundRegistry.get(new String[]{"default"})) {
+        for(Map.Entry<Integer,ChemicalCompound> compound : CompoundRegistry.get(new String[]{"dust"})) {
             ModelLoader.setCustomModelResourceLocation(this,compound.getKey(),new ModelResourceLocation(getRegistryName().toString(),"inventory"));
         }
     }
@@ -42,13 +41,13 @@ public class ItemCompound extends ItemMetaBase {
         if(!isInCreativeTab(tab)) {
             return;
         }
-        for(Map.Entry<Integer,ChemicalCompound> compound : CompoundRegistry.get(new String[]{"default"})) {
+        for(Map.Entry<Integer,ChemicalCompound> compound : CompoundRegistry.get(new String[]{"dust"})) {
             items.add(new ItemStack(this,1,compound.getKey()));
         }
     }
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        return I18n.translateToLocal("item.compound_" + CompoundRegistry.get(stack.getMetadata()).getName() + ".name");
+        return I18n.translateToLocal("item.compound_dust_" + CompoundRegistry.get(stack.getMetadata()).getName() + ".name");
     }
 }

@@ -3,7 +3,6 @@ package al132.alchemistry
 
 import al132.alchemistry.items.ModItems
 import net.minecraftforge.client.model.obj.OBJLoader
-import net.minecraftforge.common.MinecraftForge
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent
 import net.minecraftforge.fml.relauncher.Side
@@ -21,7 +20,6 @@ class ClientProxy : CommonProxy() {
     override fun postInit(e: FMLPostInitializationEvent) {
         super.postInit(e)
         ModItems.initColors()
-        MinecraftForge.EVENT_BUS.register(ClientEventHandler())
     }
 
     companion object {

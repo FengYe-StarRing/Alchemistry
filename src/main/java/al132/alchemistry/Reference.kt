@@ -1,6 +1,6 @@
 package al132.alchemistry
 
-import al132.alchemistry.blocks.ModBlocks
+import al132.alchemistry.items.ModItems
 import al132.alib.utils.extensions.toStack
 import net.minecraft.creativetab.CreativeTabs
 import net.minecraft.item.ItemStack
@@ -20,6 +20,6 @@ object Reference {
     lateinit var configDir: File
 
     val creativeTab: CreativeTabs = object : CreativeTabs("alchemistry") {
-        override fun createIcon(): ItemStack = ModBlocks.chemical_combiner.toStack()
+        override fun createIcon(): ItemStack = ModItems.elementIngot.toStack(1,3)
     }
 }

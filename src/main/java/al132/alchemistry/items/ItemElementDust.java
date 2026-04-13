@@ -16,15 +16,15 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.List;
 import java.util.Map;
 
-public class ItemElementIngot extends ItemMetaBase {
-    public ItemElementIngot(String name) {
+public class ItemElementDust extends ItemMetaBase {
+    public ItemElementDust(String name) {
         super(name);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void registerModel() {
-        for(Map.Entry<Integer,ChemicalElement> element : ElementRegistry.get(new String[]{"ingot"})) {
+        for(Map.Entry<Integer, ChemicalElement> element : ElementRegistry.get(new String[]{"dust"})) {
             ModelLoader.setCustomModelResourceLocation(this,element.getKey(),new ModelResourceLocation(getRegistryName().toString(),"inventory"));
         }
     }
@@ -35,7 +35,7 @@ public class ItemElementIngot extends ItemMetaBase {
         if(!isInCreativeTab(tab)) {
             return;
         }
-        for(Map.Entry<Integer,ChemicalElement> element : ElementRegistry.get(new String[]{"ingot"})) {
+        for(Map.Entry<Integer,ChemicalElement> element : ElementRegistry.get(new String[]{"dust"})) {
             items.add(new ItemStack(this,1,element.getKey()));
         }
     }
@@ -46,7 +46,7 @@ public class ItemElementIngot extends ItemMetaBase {
         if(!ElementRegistry.keys().contains(meta)) {
             meta = 1;
         }
-        return I18n.translateToLocal("item.element_ingot_" + ElementRegistry.get(meta).getName() + ".name").trim();
+        return I18n.translateToLocal("item.element_dust_" + ElementRegistry.get(meta).getName() + ".name").trim();
     }
 
     @Override

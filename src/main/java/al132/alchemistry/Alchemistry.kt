@@ -1,21 +1,21 @@
 package al132.alchemistry
 
 import al132.alchemistry.blocks.ModBlocks
-import al132.alchemistry.command.DissolverCommand
-import al132.alchemistry.crafting.MachineResettingHandler
-import al132.alchemistry.crafting.SaltyFoodHandler
+import al132.alchemistry.fluids.ModFluids
 import al132.alchemistry.items.ModItems
 import crafttweaker.CraftTweakerAPI
 import crafttweaker.IAction
 import net.minecraft.block.Block
 import net.minecraft.item.Item
-import net.minecraft.item.crafting.IRecipe
 import net.minecraftforge.client.event.ModelRegistryEvent
 import net.minecraftforge.event.RegistryEvent
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.common.Mod.EventHandler
 import net.minecraftforge.fml.common.SidedProxy
-import net.minecraftforge.fml.common.event.*
+import net.minecraftforge.fml.common.event.FMLInitializationEvent
+import net.minecraftforge.fml.common.event.FMLLoadCompleteEvent
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
@@ -43,6 +43,7 @@ object Alchemistry {
     @EventHandler
     fun preInit(e: FMLPreInitializationEvent) {
         proxy!!.preInit(e)
+        ModFluids.registerFluids()
     }
 
     @EventHandler
@@ -50,11 +51,6 @@ object Alchemistry {
 
     @EventHandler
     fun postInit(e: FMLPostInitializationEvent) = proxy!!.postInit(e)
-
-    @EventHandler
-    fun serverStarting(e: FMLServerStartingEvent) {
-        e.registerServerCommand(DissolverCommand())
-    }
 
     @EventHandler
     fun loadComplete(e: FMLLoadCompleteEvent) {
@@ -75,6 +71,7 @@ object Alchemistry {
         @SubscribeEvent
         fun registerBlocks(event: RegistryEvent.Register<Block>) {
             ModBlocks.registerBlocks(event)
+            ModFluids.registerBlocks(event)
         }
 
         @JvmStatic
@@ -90,14 +87,7 @@ object Alchemistry {
         fun registerModels(event: ModelRegistryEvent) {
             ModBlocks.registerModels()
             ModItems.registerModels()
-        }
-
-        @JvmStatic
-        @SubscribeEvent
-        fun registerCraftingHandler(event: RegistryEvent.Register<IRecipe>) {
-            event.registry.register(SaltyFoodHandler())
-            event.registry.register(MachineResettingHandler())
-
+            ModFluids.registerModels()
         }
     }
 }

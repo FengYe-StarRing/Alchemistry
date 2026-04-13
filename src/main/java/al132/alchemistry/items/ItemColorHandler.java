@@ -19,10 +19,14 @@ public class ItemColorHandler implements IItemColor {
 
         if(tintIndex != 0) {
             return Color.white.getRGB();
-        } else if(item instanceof ItemElementIngot && ElementRegistry.INSTANCE.keys().contains(meta)) {
-            return ElementRegistry.INSTANCE.get(meta).getColor().getRGB();
-        } else if(item instanceof ItemCompound && CompoundRegistry.INSTANCE.keys().contains(meta)) {
-            return CompoundRegistry.INSTANCE.get(meta).getColor().getRGB();
+        } else if(item instanceof ItemElementIngot && ElementRegistry.keys().contains(meta)) {
+            return ElementRegistry.get(meta).getColor().getRGB();
+        } else if(item instanceof ItemElementDust && ElementRegistry.keys().contains(meta)) {
+            return ElementRegistry.get(meta).getColor().getRGB();
+        } else if(item instanceof ItemCompound && CompoundRegistry.keys().contains(meta)) {
+            return CompoundRegistry.get(meta).getColor().getRGB();
+        } else if(item instanceof ItemCompoundDust && CompoundRegistry.keys().contains(meta)) {
+            return CompoundRegistry.get(meta).getColor().getRGB();
         }
         return Color.black.getRGB();
     }
