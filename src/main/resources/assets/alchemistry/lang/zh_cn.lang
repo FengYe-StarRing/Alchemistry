@@ -3,6 +3,10 @@ itemGroup.alchemistry=Alchemistry
 item.alchemistry:periodic_diagram.name=元素周期表
 item.alchemistry:periodic_diagram.tooltip=右击展开阅读
 
+tile.solid_fuel_fired_boiler.name=燃煤锅炉
+tile.steam_turbine.name=蒸汽轮机
+tile.fluid_fuel_boiler.name=流体燃料锅炉
+
 item.element_ingot_lithium.name=锂锭
 item.element_ingot_beryllium.name=铍锭
 item.element_ingot_boron.name=硼锭
@@ -125,6 +129,9 @@ fluid.radon=氡
 fluid.oganesson=奥气
 
 fluid.steam=蒸汽
+fluid.carbon_dioxide=二氧化碳
+fluid.oil=石油
+fluid.natural_gas=天然气
 
 item.compound_dust_silicon_dioxide.name=二氧化硅粉
 item.compound_dust_sodium_chloride.name=氯化钠

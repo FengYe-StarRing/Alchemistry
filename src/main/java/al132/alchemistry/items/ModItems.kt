@@ -1,10 +1,11 @@
 package al132.alchemistry.items
 
 import al132.alchemistry.Reference
-import al132.alchemistry.recipes.ModRecipes
+import al132.alchemistry.recipe.ModRecipes
 import al132.alib.items.ALItem
 import net.minecraft.client.Minecraft
 import net.minecraft.item.Item
+import net.minecraft.item.ItemStack
 import net.minecraftforge.event.RegistryEvent
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
@@ -52,4 +53,6 @@ abstract class ItemMetaBase(name: String) : ItemBase(name) {
     init {
         this.hasSubtypes = true
     }
+
+    fun toStack(meta: Int) = ItemStack(this,1,meta)
 }

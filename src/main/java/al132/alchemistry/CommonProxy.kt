@@ -2,12 +2,14 @@ package al132.alchemistry
 
 import al132.alchemistry.chemistry.CompoundRegistry
 import al132.alchemistry.chemistry.ElementRegistry
-import al132.alchemistry.recipes.ModRecipes
+import al132.alchemistry.inventory.gui.GuiHandler
+import al132.alchemistry.recipe.ModRecipes
 import crafttweaker.CraftTweakerAPI
 import net.minecraftforge.fml.common.Loader
 import net.minecraftforge.fml.common.event.FMLInitializationEvent
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent
+import net.minecraftforge.fml.common.network.NetworkRegistry
 
 open class CommonProxy {
     open fun preInit(e: FMLPreInitializationEvent) {
@@ -19,7 +21,7 @@ open class CommonProxy {
     }
 
     open fun init(e: FMLInitializationEvent) {
-
+        NetworkRegistry.INSTANCE.registerGuiHandler(Alchemistry,GuiHandler());
     }
 
     open fun postInit(e: FMLPostInitializationEvent) {

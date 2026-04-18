@@ -118,12 +118,6 @@ compileTestKotlin {
     }
 }
 
-/*
-jar {
-    manifest {
-        //attributes 'FMLAT': 'alchemistry_at.cfg'
-        attributes 'FMLCorePluginContainsFMLMod': 'true'
-        attributes 'FMLCorePlugin': 'al132.alchemistry.core.AlchemistryCore'
-    }
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
 }
-*/

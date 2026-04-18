@@ -3,11 +3,11 @@ package al132.alchemistry.items;
 import al132.alchemistry.chemistry.ChemicalElement;
 import al132.alchemistry.chemistry.ElementRegistry;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
@@ -46,7 +46,7 @@ public class ItemElementDust extends ItemMetaBase {
         if(!ElementRegistry.keys().contains(meta)) {
             meta = 1;
         }
-        return I18n.translateToLocal("item.element_dust_" + ElementRegistry.get(meta).getName() + ".name").trim();
+        return I18n.format("item.element_dust_" + ElementRegistry.get(meta).getName() + ".name");
     }
 
     @Override

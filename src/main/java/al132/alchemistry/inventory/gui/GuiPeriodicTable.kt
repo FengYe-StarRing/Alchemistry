@@ -1,4 +1,4 @@
-package al132.alchemistry.client
+package al132.alchemistry.inventory.gui
 
 import al132.alchemistry.Reference
 import net.minecraft.client.Minecraft

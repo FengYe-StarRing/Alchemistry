@@ -3,11 +3,11 @@ package al132.alchemistry.items;
 import al132.alchemistry.chemistry.ChemicalCompound;
 import al132.alchemistry.chemistry.CompoundRegistry;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
@@ -48,6 +48,6 @@ public class ItemCompoundDust extends ItemMetaBase {
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        return I18n.translateToLocal("item.compound_dust_" + CompoundRegistry.get(stack.getMetadata()).getName() + ".name");
+        return I18n.format("item.compound_dust_" + CompoundRegistry.get(stack.getMetadata()).getName() + ".name");
     }
 }

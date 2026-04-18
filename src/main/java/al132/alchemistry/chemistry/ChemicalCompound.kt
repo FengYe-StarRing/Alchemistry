@@ -60,6 +60,11 @@ data class ChemicalCompound constructor(override var name: String = "",
                 component.quantity.toString().chars().forEach {
                     builder.append(Character.toChars(subscriptZeroCodepoint + Character.getNumericValue(it)))
                 }
+            } else if(component.quantity <= 0) {
+                when(component.quantity) {
+                    0 -> builder.append('*')
+                    -1 -> builder.append('﹖')
+                }
             }
         }
         return builder.toString()

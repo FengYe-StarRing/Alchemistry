@@ -77,7 +77,7 @@ object Alchemistry {
         @JvmStatic
         @SubscribeEvent
         fun registerItems(event: RegistryEvent.Register<Item>) {
-            ModBlocks.registerItemBlocks(event)
+            ModBlocks.registerItems(event)
             ModItems.registerItems(event)
         }
 
@@ -85,7 +85,6 @@ object Alchemistry {
         @JvmStatic
         @SubscribeEvent
         fun registerModels(event: ModelRegistryEvent) {
-            ModBlocks.registerModels()
             ModItems.registerModels()
             ModFluids.registerModels()
         }
