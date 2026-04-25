@@ -8,11 +8,10 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
-public class ContainerMachine<T extends TileEntity> extends Container {
+public class ContainerMachine<T extends TileEntity> extends ContainerBase {
     public final T tileEntity;
 
     public ContainerMachine(EntityPlayer player,TileEntity tile) {
-        // 玩家背包的物品槽
         for(int i = 0;i < 9;i++) {
             addSlotToContainer(new Slot(player.inventory,i,8 + i * 18,142));
         }
@@ -22,19 +21,5 @@ public class ContainerMachine<T extends TileEntity> extends Container {
             }
         }
         tileEntity = (T)tile;
-    }
-
-    @Override
-    public boolean canInteractWith(EntityPlayer playerIn) {
-        return true;
-    }
-
-    @Override
-    public ItemStack transferStackInSlot(EntityPlayer playerIn,int index) {
-        return ItemStack.EMPTY;
-    }
-
-    public void addSlotToContainer(IItemHandler itemHandler,int index,int line,int row) {
-        addSlotToContainer(new SlotItemHandler(itemHandler,index,8 + line * 18,17 + row * 18));
     }
 }

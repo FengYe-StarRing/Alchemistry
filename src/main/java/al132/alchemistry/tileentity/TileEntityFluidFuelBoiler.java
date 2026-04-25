@@ -21,7 +21,7 @@ public class TileEntityFluidFuelBoiler extends TileEntityMachine {
     public int maxBurnTime = 1;
 
     public TileEntityFluidFuelBoiler() {
-        super(new ItemStackHandler(3),new ItemStackHandler(3),new FluidTank[]{new FluidTank(16000),new FluidTank(16000),new FluidTank(16000)});
+        super(new ItemStackHandler(3),new ItemStackHandler(3),new FluidTank[]{new FluidTank(1000),new FluidTank(1000),new FluidTank(1000)});
     }
 
     @Override
@@ -59,6 +59,7 @@ public class TileEntityFluidFuelBoiler extends TileEntityMachine {
             // 搜索配方
             for(SolidFuelFiredBoilerRecipe recipe : ModRecipes.solidFuelFiredBoilerRecipes) {
                 if(recipe.match(waterTank.getFluid())) {
+                    // 检查运行条件是否满足
                     if(recipe.canApply(burnTime,waterTank.getFluid(),steamTank)) {
                         burnTime -= recipe.fuel;
                         waterTank.drain(recipe.input,true);

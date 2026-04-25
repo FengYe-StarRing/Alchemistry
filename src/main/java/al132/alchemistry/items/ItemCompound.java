@@ -48,6 +48,11 @@ public class ItemCompound extends ItemMetaBase {
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        return I18n.format("item.compound_" + CompoundRegistry.get(stack.getMetadata()).getName() + ".name");
+        return I18n.format("item.compound_" + CompoundRegistry.get(stack.getMetadata()).name + ".name");
+    }
+
+    @Override
+    public int getItemBurnTime(ItemStack itemStack) {
+        return CompoundRegistry.get(itemStack.getMetadata()).getBurnTime();
     }
 }

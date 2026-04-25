@@ -5,31 +5,45 @@ import al132.alchemistry.util.RenderUtil;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.inventory.Container;
+import net.minecraft.inventory.Slot;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.energy.EnergyStorage;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.SlotItemHandler;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@SideOnly(Side.CLIENT)
 public abstract class GuiContainerBase<T extends TileEntity> extends GuiContainer {
     public final T tileEntity;
+    public final Container container;
     public String title = "";
+    public String uiType = "standard";
 
-    public GuiContainerBase(Container inventorySlotsIn,TileEntity tile) {
-        super(inventorySlotsIn);
+    public GuiContainerBase(Container container,TileEntity tile) {
+        super(container);
         tileEntity = (T)tile;
+        this.container = container;
+    }
+
+    @Override
+    public void initGui() {
+        if(uiType.equals("large")) ySize = 220;
+        super.initGui();
     }
 
     @Override
     public void drawGuiContainerBackgroundLayer(float partialTicks,int mouseX,int mouseY) {
-        mc.getTextureManager().bindTexture(new ResourceLocation(Reference.MODID,"textures/gui/gui.png"));
+        mc.getTextureManager().bindTexture(new ResourceLocation(Reference.MODID,"textures/gui/" + uiType + "_gui.png"));
         drawTexturedModalRect(guiLeft,guiTop,0,0,xSize,ySize);
+        for(Slot slot : container.inventorySlots) {
+            if(slot instanceof SlotItemHandler) {
+                drawComponent(slot.xPos - 8,slot.yPos - 17,1,0);
+            }
+        }
     }
 
     @Override
@@ -47,20 +61,20 @@ public abstract class GuiContainerBase<T extends TileEntity> extends GuiContaine
         fontRenderer.drawString(I18n.format("container.inventory"),8,ySize - 96 + 2,4210752);
     }
 
-    public void drawComponent(int offsetX, int offsetY, int line, int row, float bar) {
+    public void drawComponent(int offsetX,int offsetY,int row,int column,float bar) {
         offsetX += 7;
         offsetY += 16;
         int textureX,textureY,width,height;
-        switch(line) {
+        switch(row) {
             default:
             case 0:
-                textureX = row * 18;
+                textureX = column * 18;
                 textureY = 0;
                 width = 18;
                 height = 54;
                 break;
             case 1:
-                textureX = row * 18;
+                textureX = column * 18;
                 textureY = 54;
                 width = 18;
                 height = 18;
@@ -71,8 +85,8 @@ public abstract class GuiContainerBase<T extends TileEntity> extends GuiContaine
         drawTexturedModalRect(guiLeft + offsetX,guiTop + offsetY + bar,textureX,textureY + (int)bar,width,height - (int)bar);
     }
 
-    public void drawComponent(int offsetX,int offsetY,int line,int row) {
-        drawComponent(offsetX,offsetY,line,row,1F);
+    public void drawComponent(int offsetX,int offsetY,int row,int column) {
+        drawComponent(offsetX,offsetY,row,column,1F);
     }
 
     public void drawFluidTank(int offsetX,int offsetY,FluidTank tank) {
@@ -99,9 +113,28 @@ public abstract class GuiContainerBase<T extends TileEntity> extends GuiContaine
     }
 
     public void drawInfoBackground(String... texts) {
-        RenderUtil.drawRect(guiLeft + 7,guiTop + 16,18 * 9,18 * 3,Color.gray.getRGB());
+        int line = 3;
+        if(uiType.equals("large")) line = 6;
+        RenderUtil.drawRect(guiLeft + 7,guiTop + 16,18 * 9,18 * line,Color.gray.getRGB());
         for(int i = 0;i < 6 && i < texts.length;i++) {
             fontRenderer.drawString(texts[i],guiLeft + 8,guiTop + 16 + fontRenderer.FONT_HEIGHT * i,Color.white.getRGB());
         }
+    }
+
+    public void setUIType(String uiType) {
+        this.uiType = uiType;
+    }
+
+    public void drawEnergyStorage(int offsetX,int offsetY,EnergyStorage storage) {
+        drawComponent(offsetX,offsetY,0,0);
+        drawComponent(offsetX,offsetY,0,1,(float)storage.getEnergyStored() / (float)storage.getMaxEnergyStored());
+    }
+
+    public void drawEnergyStorageHoveringText(int offsetX,int offsetY,EnergyStorage storage) {
+        offsetX += 7;
+        offsetY += 16;
+        List<String> texts = new ArrayList<>();
+        texts.add(storage.getEnergyStored() + "FE/" + storage.getMaxEnergyStored() + "FE");
+        RenderUtil.drawHoveringText(this,texts,guiLeft + offsetX,guiTop + offsetY,18,54);
     }
 }

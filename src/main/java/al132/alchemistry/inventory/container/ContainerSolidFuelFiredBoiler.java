@@ -9,9 +9,9 @@ public class ContainerSolidFuelFiredBoiler extends ContainerMachine<TileEntitySo
         super(player,tile);
         // 添加物品槽
         addSlotToContainer(tileEntity.inputItemHandler,0,2,2);
-        addSlotToContainer(tileEntity.inputItemHandler,1,5,0);
-        addSlotToContainer(tileEntity.inputItemHandler,2,8,0);
-        addSlotToContainer(tileEntity.outputItemHandler,0,5,2);
-        addSlotToContainer(tileEntity.outputItemHandler,1,8,2);
+        addSlotToContainer(tileEntity.inputItemHandler,1,0,5);
+        addSlotToContainer(tileEntity.inputItemHandler,2,0,8);
+        addSlotToContainer(tileEntity.outputItemHandler,0,2,5);
+        addSlotToContainer(tileEntity.outputItemHandler,1,2,8);
     }
 }

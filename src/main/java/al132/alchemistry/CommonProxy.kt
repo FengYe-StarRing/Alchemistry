@@ -2,6 +2,7 @@ package al132.alchemistry
 
 import al132.alchemistry.chemistry.CompoundRegistry
 import al132.alchemistry.chemistry.ElementRegistry
+import al132.alchemistry.chemistry.MixtureRegistry
 import al132.alchemistry.inventory.gui.GuiHandler
 import al132.alchemistry.recipe.ModRecipes
 import crafttweaker.CraftTweakerAPI
@@ -16,6 +17,7 @@ open class CommonProxy {
         Alchemistry.logger = e.modLog
         ElementRegistry.init()
         CompoundRegistry.init()
+        MixtureRegistry.init()
 
         if (Loader.isModLoaded("crafttweaker")) CraftTweakerAPI.tweaker.loadScript(false, "alchemistry")
     }

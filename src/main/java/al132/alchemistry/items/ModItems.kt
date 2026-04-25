@@ -19,6 +19,7 @@ object ModItems {
     var compoundDust = ItemCompoundDust("compound_dust")
     var elements = elementIngot
     val periodicDankMolecule = ItemPeriodicDiagram()
+    var mixture = ItemMixture("mixture")
 
 
     fun registerItems(event: RegistryEvent.Register<Item>) {
@@ -39,6 +40,7 @@ object ModItems {
         itemColors.registerItemColorHandler(colorHandler,elementIngot)
         itemColors.registerItemColorHandler(colorHandler,compoundDust)
         itemColors.registerItemColorHandler(colorHandler,elementDust)
+        itemColors.registerItemColorHandler(colorHandler, mixture)
     }
 }
 
@@ -55,4 +57,5 @@ abstract class ItemMetaBase(name: String) : ItemBase(name) {
     }
 
     fun toStack(meta: Int) = ItemStack(this,1,meta)
+    fun toStack(meta: Int,amount: Int) = ItemStack(this,amount,meta)
 }

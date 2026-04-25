@@ -21,13 +21,6 @@ public class GuiFluidFuelBoiler extends GuiContainerBase<TileEntityFluidFuelBoil
         drawFluidTank(18,0,tileEntity.fluidTanks[0]);
         drawFluidTank(18 * 6,0,tileEntity.fluidTanks[1]);
         drawFluidTank(18 * 7,0,tileEntity.fluidTanks[2]);
-        // 绘制物品槽
-        drawComponent(18 * 2,0,1,0);
-        drawComponent(18 * 5,0,1,0);
-        drawComponent(18 * 8,0,1,0);
-        drawComponent(18 * 2,18 * 2,1,0);
-        drawComponent(18 * 5,18 * 2,1,0);
-        drawComponent(18 * 8,18 * 2,1,0);
         // 绘制其他组件
         drawComponent(18 * 2,18,1,4);
         drawComponent(18 * 5,18,1,4);

@@ -11,14 +11,26 @@ import java.util.List;
 public class ModBlocks {
     public static final List<ALBlock> blocks = new ArrayList<>();
 
-    public static final BlockSolidFuelFiredBoiler solidBoiler = new BlockSolidFuelFiredBoiler("solid_fuel_fired_boiler");
+    public static final BlockSolidFuelFiredBoiler solidFuelFiredBoiler = new BlockSolidFuelFiredBoiler("solid_fuel_fired_boiler");
     public static final BlockSteamTurbine steamTurbine = new BlockSteamTurbine("steam_turbine");
     public static final BlockFluidFuelBoiler fluidFuelBoiler = new BlockFluidFuelBoiler("fluid_fuel_boiler");
+    public static final BlockGasTurbine gasTurbine = new BlockGasTurbine("gas_turbine");
+    public static final BlockDistillationChamber distillationChamber = new BlockDistillationChamber("distillation_chamber");
+    public static final BlockRefineryChamber refineryChamber = new BlockRefineryChamber("refinery_chamber");
+    public static final BlockBatteryBox batteryBox = new BlockBatteryBox("battery_box");
+    public static final BlockFuelCell fuelCell = new BlockFuelCell("fuel_cell");
+    public static final BlockSolidFuelCell solidFuelCell = new BlockSolidFuelCell("solid_fuel_cell");
 
     static {
-        blocks.add(solidBoiler);
+        blocks.add(solidFuelFiredBoiler);
         blocks.add(steamTurbine);
         blocks.add(fluidFuelBoiler);
+        blocks.add(gasTurbine);
+        blocks.add(distillationChamber);
+        blocks.add(refineryChamber);
+        blocks.add(batteryBox);
+        blocks.add(fuelCell);
+        blocks.add(solidFuelCell);
     }
 
     public static void registerBlocks(RegistryEvent.Register<Block> event) {

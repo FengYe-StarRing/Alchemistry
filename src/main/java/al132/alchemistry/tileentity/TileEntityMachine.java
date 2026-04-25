@@ -34,6 +34,20 @@ public abstract class TileEntityMachine extends ALTile implements ITickable {
         this.energyStorage = energyStorage;
     }
 
+    public TileEntityMachine(ItemStackHandler inputItemHandler,ItemStackHandler outputItemHandler,FluidTank[] fluidTanks,AlchemistryEnergyStorage energyStorage) {
+        this.inputItemHandler = inputItemHandler;
+        this.outputItemHandler = outputItemHandler;
+        this.fluidTanks = fluidTanks;
+        this.energyStorage = energyStorage;
+    }
+
+    public TileEntityMachine(ItemStackHandler itemHandler) {
+        inputItemHandler = itemHandler;
+        this.outputItemHandler = null;
+        this.fluidTanks = null;
+        this.energyStorage = null;
+    }
+
     @Override
     public SPacketUpdateTileEntity getUpdatePacket() {
         return new SPacketUpdateTileEntity(pos,1,getUpdateTag());
@@ -66,7 +80,7 @@ public abstract class TileEntityMachine extends ALTile implements ITickable {
         super.readFromNBT(compound);
         if(inputItemHandler != null) inputItemHandler.deserializeNBT(compound.getCompoundTag("InputItemHandler"));
         if(outputItemHandler != null) outputItemHandler.deserializeNBT(compound.getCompoundTag("OutputItemHandler"));
-        for(int i = 0;i < fluidTanks.length;i++) {
+        if(fluidTanks != null) for(int i = 0;i < fluidTanks.length;i++) {
             fluidTanks[i].readFromNBT(compound.getCompoundTag("FluidTank" + i));
         }
         if(energyStorage != null) energyStorage.deserializeNBT(compound.getCompoundTag("EnergyStorage"));
@@ -77,10 +91,18 @@ public abstract class TileEntityMachine extends ALTile implements ITickable {
         super.writeToNBT(compound);
         if(inputItemHandler != null) compound.setTag("InputItemHandler",inputItemHandler.serializeNBT());
         if(outputItemHandler != null) compound.setTag("OutputItemHandler",outputItemHandler.serializeNBT());
-        for(int i = 0;i < fluidTanks.length;i++) {
+        if(fluidTanks != null) for(int i = 0;i < fluidTanks.length;i++) {
             compound.setTag("FluidTank" + i,fluidTanks[i].writeToNBT(new NBTTagCompound()));
         }
         if(energyStorage != null) compound.setTag("EnergyStorage",energyStorage.serializeNBT());
         return compound;
+    }
+
+    @Override
+    public void update() {
+        if(world.isRemote) {
+            return;
+        }
+        markDirty();
     }
 }

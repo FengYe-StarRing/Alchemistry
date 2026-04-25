@@ -23,7 +23,7 @@ public class TileEntitySolidFuelFiredBoiler extends TileEntityMachine {
     public int maxBurnTime = 1;
 
     public TileEntitySolidFuelFiredBoiler() {
-        super(new ItemStackHandler(3),new ItemStackHandler(2),new FluidTank[]{new FluidTank(16000),new FluidTank(16000)});
+        super(new ItemStackHandler(3),new ItemStackHandler(2),new FluidTank[]{new FluidTank(1000),new FluidTank(1000)});
     }
 
     @Override
@@ -33,9 +33,9 @@ public class TileEntitySolidFuelFiredBoiler extends TileEntityMachine {
         }
         ItemStack fuelItemStack = inputItemHandler.getStackInSlot(0);
         ItemStack waterBucketItemStack = inputItemHandler.getStackInSlot(1);
-        ItemStack steamBucketItemStack = inputItemHandler.getStackInSlot(2);
+        ItemStack emptySteamBucketItemStack = inputItemHandler.getStackInSlot(2);
         ItemStack emptyWaterBucketItemStack = outputItemHandler.getStackInSlot(0);
-        ItemStack emptySteamBucketItemStack = outputItemHandler.getStackInSlot(1);
+        ItemStack steamBucketItemStack = outputItemHandler.getStackInSlot(1);
         FluidTank waterTank = fluidTanks[0];
         FluidTank steamTank = fluidTanks[1];
         // 将水桶中的水转移到容器内并输出空桶
@@ -45,8 +45,8 @@ public class TileEntitySolidFuelFiredBoiler extends TileEntityMachine {
             outputItemHandler.setStackInSlot(0,stacks[1]);
         }
         // 将容器内的蒸汽转移到桶内并输出
-        if(!steamBucketItemStack.isEmpty()) {
-            ItemStack[] stacks = FluidTankUtil.transfer(steamTank,steamBucketItemStack,emptySteamBucketItemStack);
+        if(!emptySteamBucketItemStack.isEmpty()) {
+            ItemStack[] stacks = FluidTankUtil.transfer(steamTank,emptySteamBucketItemStack,steamBucketItemStack);
             inputItemHandler.setStackInSlot(2,stacks[0]);
             outputItemHandler.setStackInSlot(1,stacks[1]);
         }
@@ -55,6 +55,7 @@ public class TileEntitySolidFuelFiredBoiler extends TileEntityMachine {
             // 搜索配方
             for (SolidFuelFiredBoilerRecipe recipe : ModRecipes.solidFuelFiredBoilerRecipes) {
                 if(recipe.match(waterTank.getFluid())) {
+                    // 检查运行条件是否满足
                     if(recipe.canApply(burnTime,waterTank.getFluid(),steamTank)) {
                         burnTime -= recipe.fuel;
                         waterTank.drain(recipe.input,true);

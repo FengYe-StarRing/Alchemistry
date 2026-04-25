@@ -1,4 +1,4 @@
-itemGroup.alchemistry=Alchemistry
+itemGroup.alchemistry=炼金化学
 
 item.alchemistry:periodic_diagram.name=元素周期表
 item.alchemistry:periodic_diagram.tooltip=右击展开阅读
@@ -6,6 +6,21 @@ item.alchemistry:periodic_diagram.tooltip=右击展开阅读
 tile.solid_fuel_fired_boiler.name=燃煤锅炉
 tile.steam_turbine.name=蒸汽轮机
 tile.fluid_fuel_boiler.name=流体燃料锅炉
+tile.gas_turbine.name=燃气轮机
+tile.distillation_chamber.name=蒸馏室
+tile.refinery_chamber.name=炼油室
+tile.battery_box.name=电池箱
+tile.fuel_cell.name=燃料电池
+tile.solid_fuel_cell.name=固体燃料电池
+
+gui.text0=运行状态: 未运行
+gui.text1=运行状态: 正在运行...
+gui.text2=运行状态: 正在运行...(%f%%)
+gui.text3=输出功率: %dFE/t
+gui.steam_turbine.text0=最大蒸汽流量: %d
+gui.steam_turbine.text1=蒸汽流量: %d
+gui.gas_turbine.text0=最大燃气流量: %d
+gui.gas_turbine.text1=燃气流量: %d
 
 item.element_ingot_lithium.name=锂锭
 item.element_ingot_beryllium.name=铍锭
@@ -17,7 +32,6 @@ item.element_ingot_sodium.name=钠锭
 item.element_ingot_magnesium.name=镁锭
 item.element_ingot_aluminum.name=铝锭
 item.element_ingot_silicon.name=硅锭
-item.element_ingot_phosphorus.name=磷锭
 item.element_ingot_potassium.name=钾锭
 item.element_ingot_calcium.name=钙锭
 item.element_ingot_scandium.name=钪锭
@@ -110,6 +124,8 @@ item.element_ingot_moscovium.name=镆锭
 item.element_ingot_livermorium.name=鉝锭
 item.element_ingot_tennessine.name=Ts锭
 
+item.element_dust_carbon.name=碳粉
+item.element_dust_phosphorus.name=磷粉
 item.element_dust_sulfur.name=硫粉
 
 fluid.hydrogen=氢
@@ -132,6 +148,39 @@ fluid.steam=蒸汽
 fluid.carbon_dioxide=二氧化碳
 fluid.oil=石油
 fluid.natural_gas=天然气
+fluid.refinery_gas=炼油气
+fluid.naphtha=石脑油
+fluid.light_fuel=轻燃油
+fluid.heavy_fuel=重燃油
+fluid.methane=甲烷
+fluid.ethane=乙烷
+fluid.propane=丙烷
+fluid.butane=丁烷
+fluid.pentane=戊烷
+fluid.hexane=己烷
+fluid.heptane=庚烷
+fluid.octane=辛烷
+fluid.ethylene=乙烯
+fluid.propylene=丙烯
+fluid.butadiene=丁二烯
+fluid.butene=丁烯
+fluid.pentene=戊烯
+fluid.hexene=己烯
+fluid.heptene=庚烯
+fluid.octene=辛烯
+fluid.benzene=苯
+fluid.toluene=甲苯
+fluid.hydrogen_sulfide=硫化氢
+fluid.jet_a=航空煤油A型
+fluid.jet_b=航空煤油B型
+fluid.liquefied_petroleum_gas=液化石油气
 
-item.compound_dust_silicon_dioxide.name=二氧化硅粉
+item.compound_dust_silicon_dioxide.name=二氧化硅
 item.compound_dust_sodium_chloride.name=氯化钠
+
+item.compound_heptadecane.name=十七烷
+item.compound_octadecane.name=十八烷
+item.compound_nonadecane.name=十九烷
+item.compound_eicosane.name=二十烷
+
+item.mixture_oil_residue.name=油渣

@@ -24,13 +24,11 @@ public class ThreeFluidHandler implements IFluidHandler {
 
     @Override
     public int fill(FluidStack resource,boolean doFill) {
+        if(inputTank2.getFluid() != null && inputTank2.getFluid().isFluidEqual(resource)) return inputTank2.fill(resource,doFill);
         if(inputTank1.getFluid() == null || inputTank1.getFluid().isFluidEqual(resource)) {
             return inputTank1.fill(resource,doFill);
         }
-        if(inputTank2.getFluid() == null || inputTank2.getFluid().isFluidEqual(resource)) {
-            return inputTank2.fill(resource,doFill);
-        }
-        return 0;
+        return inputTank2.fill(resource,doFill);
     }
 
     @Nullable

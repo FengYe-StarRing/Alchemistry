@@ -20,6 +20,6 @@ object Reference {
     lateinit var configDir: File
 
     val creativeTab: CreativeTabs = object : CreativeTabs("alchemistry") {
-        override fun createIcon(): ItemStack = ModItems.elementIngot.toStack(1,3)
+        override fun createIcon(): ItemStack = ModItems.elementIngot.toStack(1)
     }
 }

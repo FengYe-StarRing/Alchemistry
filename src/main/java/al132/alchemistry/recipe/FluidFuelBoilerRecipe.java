@@ -1,9 +1,17 @@
 package al132.alchemistry.recipe;
 
+import al132.alchemistry.chemistry.*;
+import mezz.jei.api.ingredients.IIngredients;
+import mezz.jei.api.ingredients.VanillaTypes;
+import mezz.jei.api.recipe.IRecipeWrapper;
+import net.minecraft.client.Minecraft;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
-public class FluidFuelBoilerRecipe {
+import java.awt.*;
+import java.util.Map;
+
+public class FluidFuelBoilerRecipe implements IRecipeWrapper {
     public final FluidStack input;
     public final int fuel;
 
@@ -13,8 +21,27 @@ public class FluidFuelBoilerRecipe {
     }
 
     public static void init() {
-        ModRecipes.addFluidFuelBoilerRecipe(FluidRegistry.getFluidStack("oil",1000),1600);
-        ModRecipes.addFluidFuelBoilerRecipe(FluidRegistry.getFluidStack("natural_gas",1000),1600);
+        for(Map.Entry<Integer,ChemicalElement> entry : ElementRegistry.get(new String[]{"fluid"})) {
+            ChemicalElement element = entry.getValue();
+            int burnTime = element.burnTime;
+            if(burnTime > 0) {
+                ModRecipes.addFluidFuelBoilerRecipe(FluidRegistry.getFluidStack(element.name,1000),burnTime);
+            }
+        }
+        for(Map.Entry<Integer,ChemicalCompound> entry : CompoundRegistry.get(new String[]{"fluid"})) {
+            ChemicalCompound compound = entry.getValue();
+            int burnTime = compound.getBurnTime();
+            if(burnTime > 0) {
+                ModRecipes.addFluidFuelBoilerRecipe(FluidRegistry.getFluidStack(compound.name,1000),burnTime);
+            }
+        }
+        for(Map.Entry<Integer,ChemicalMixture> entry : MixtureRegistry.get(new String[]{"fluid"})) {
+            ChemicalMixture mixture = entry.getValue();
+            int burnTime = mixture.getBurnTime();
+            if(burnTime > 0) {
+                ModRecipes.addFluidFuelBoilerRecipe(FluidRegistry.getFluidStack(mixture.name,1000),burnTime);
+            }
+        }
     }
 
     public boolean match(FluidStack input) {
@@ -23,5 +50,16 @@ public class FluidFuelBoilerRecipe {
 
     public boolean canApply(FluidStack input) {
         return match(input) && input.amount >= this.input.amount;
+    }
+
+    @Override
+    public void getIngredients(IIngredients ingredients) {
+        ingredients.setInput(VanillaTypes.FLUID,input);
+    }
+
+    @Override
+    public void drawInfo(Minecraft mc,int recipeWidth,int recipeHeight,int mouseX,int mouseY) {
+        String text = "+" + fuel + "fuel";
+        mc.fontRenderer.drawString(text,63 - mc.fontRenderer.getStringWidth(text) / 2,9 - mc.fontRenderer.FONT_HEIGHT / 2,Color.black.getRGB());
     }
 }

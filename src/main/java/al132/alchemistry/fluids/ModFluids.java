@@ -1,9 +1,7 @@
 package al132.alchemistry.fluids;
 
-import al132.alchemistry.chemistry.ChemicalCompound;
-import al132.alchemistry.chemistry.ChemicalElement;
-import al132.alchemistry.chemistry.CompoundRegistry;
-import al132.alchemistry.chemistry.ElementRegistry;
+import al132.alchemistry.Reference;
+import al132.alchemistry.chemistry.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -26,16 +24,21 @@ public class ModFluids {
     private static final List<Fluid> fluids = new ArrayList<>();
 
     public static void registerFluids() {
-        ResourceLocation still = new ResourceLocation("alchemistry:fluids/fluid_still");
-        ResourceLocation flow = new ResourceLocation("alchemistry:fluids/fluid_flow");
+        ResourceLocation still = new ResourceLocation(Reference.MODID + ":fluids/fluid_still");
+        ResourceLocation flow = new ResourceLocation(Reference.MODID + ":fluids/fluid_flow");
         for(ChemicalElement element : ElementRegistry.getAllElements().values()) {
-            if(element.getMaterials().contains("fluid")) {
-                fluids.add(new Fluid(element.getName(),still,flow,element.getColor()));
+            if(element.materials.contains("fluid")) {
+                fluids.add(new Fluid(element.name,still,flow,element.color));
             }
         }
         for(ChemicalCompound compound : CompoundRegistry.getAllCompounds().values()) {
-            if(compound.getMaterials().contains("fluid")) {
-                fluids.add(new Fluid(compound.getName(),still,flow,compound.getColor()));
+            if(compound.materials.contains("fluid")) {
+                fluids.add(new Fluid(compound.name,still,flow,compound.color));
+            }
+        }
+        for(ChemicalMixture mixture : MixtureRegistry.getMixtures().values()) {
+            if(mixture.materials.contains("fluid")) {
+                fluids.add(new Fluid(mixture.name,still,flow,mixture.color));
             }
         }
         for(Fluid fluid : fluids) {
@@ -59,7 +62,7 @@ public class ModFluids {
     @SideOnly(Side.CLIENT)
     private static void registerFluidModel(Block blockFluid) {
         Item itemFluid = Item.getItemFromBlock(blockFluid);
-        ModelResourceLocation resource = new ModelResourceLocation("alchemistry:fluid","fluid");
+        ModelResourceLocation resource = new ModelResourceLocation(Reference.MODID + ":fluid","fluid");
         ModelLoader.setCustomMeshDefinition(itemFluid, stack -> resource);
         ModelLoader.setCustomStateMapper(blockFluid,new StateMapperBase() {
             @Override

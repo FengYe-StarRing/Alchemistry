@@ -46,12 +46,17 @@ public class ItemElementDust extends ItemMetaBase {
         if(!ElementRegistry.keys().contains(meta)) {
             meta = 1;
         }
-        return I18n.format("item.element_dust_" + ElementRegistry.get(meta).getName() + ".name");
+        return I18n.format("item.element_dust_" + ElementRegistry.get(meta).name + ".name");
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack,World worldIn,List<String> tooltip,ITooltipFlag flagIn) {
         tooltip.add(ElementRegistry.get(stack.getItemDamage()).toAbbreviatedString());
+    }
+
+    @Override
+    public int getItemBurnTime(ItemStack itemStack) {
+        return ElementRegistry.get(itemStack.getMetadata()).burnTime;
     }
 }

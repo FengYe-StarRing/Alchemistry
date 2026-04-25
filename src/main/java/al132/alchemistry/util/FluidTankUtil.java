@@ -70,7 +70,7 @@ public class FluidTankUtil {
      * @param tank 流体容器
      * @param input 空物品容器
      * @param output 物品容器
-     * @return 转移后的物品容器与空物品容器
+     * @return 转移后的空物品容器与满物品容器
      */
     public static ItemStack[] transfer(FluidTank tank,ItemStack input,ItemStack output) {
         FluidStack fluidStack = tank.getFluid() == null ? null : tank.getFluid().copy();
