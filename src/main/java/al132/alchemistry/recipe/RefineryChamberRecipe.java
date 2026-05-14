@@ -40,7 +40,7 @@ public class RefineryChamberRecipe implements IRecipeWrapper {
     public static void init() {
         ModRecipes.addRefineryChamberRecipe(10,100,
                 FluidRegistry.getFluidStack("oil",1000),
-                FluidRegistry.getFluidStack("water",1000),
+                FluidRegistry.getFluidStack("distilled_water",1000),
                 FluidRegistry.getFluidStack("refinery_gas",250),
                 FluidRegistry.getFluidStack("naphtha",250),
                 FluidRegistry.getFluidStack("light_fuel",250),

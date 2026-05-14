@@ -21,6 +21,7 @@ public class GuiDistillationChamber extends GuiContainerBase<TileEntityDistillat
         drawFluidTank(18 * 7,0,tileEntity.fluidTanks[1]);
         // 绘制其他组件
         drawComponent(18 * 2,18,1,4);
+        drawComponent(18 * 4,18,2,0);
         drawComponent(18 * 8,18,1,4);
     }
 

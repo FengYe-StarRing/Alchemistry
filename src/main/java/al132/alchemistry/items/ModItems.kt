@@ -20,6 +20,7 @@ object ModItems {
     var elements = elementIngot
     val periodicDankMolecule = ItemPeriodicDiagram()
     var mixture = ItemMixture("mixture")
+    val structureTool = ItemStructureTool("structure_tool")
 
 
     fun registerItems(event: RegistryEvent.Register<Item>) {

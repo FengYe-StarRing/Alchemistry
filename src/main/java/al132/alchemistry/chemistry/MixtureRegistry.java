@@ -67,6 +67,10 @@ public class MixtureRegistry {
                 new CompoundPair("propane",1),
                 new CompoundPair("butane",1),
         },new String[]{"fluid"});
+        addMixture("salt_water",new Color(219,201,216),new CompoundPair[]{
+                new CompoundPair("sodium_chloride",1),
+                new CompoundPair("distilled_water",1),
+        },new String[]{"fluid"});
     }
 
     public static void addMixture(String name,Color color,CompoundPair[] components) {

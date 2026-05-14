@@ -2,6 +2,7 @@ itemGroup.alchemistry=炼金化学
 
 item.alchemistry:periodic_diagram.name=元素周期表
 item.alchemistry:periodic_diagram.tooltip=右击展开阅读
+item.alchemistry:structure_tool.name=结构工具
 
 tile.solid_fuel_fired_boiler.name=燃煤锅炉
 tile.steam_turbine.name=蒸汽轮机
@@ -174,6 +175,8 @@ fluid.hydrogen_sulfide=硫化氢
 fluid.jet_a=航空煤油A型
 fluid.jet_b=航空煤油B型
 fluid.liquefied_petroleum_gas=液化石油气
+fluid.distilled_water=蒸馏水
+fluid.salt_water=盐水
 
 item.compound_dust_silicon_dioxide.name=二氧化硅
 item.compound_dust_sodium_chloride.name=氯化钠

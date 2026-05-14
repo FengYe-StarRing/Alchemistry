@@ -79,6 +79,12 @@ public abstract class GuiContainerBase<T extends TileEntity> extends GuiContaine
                 width = 18;
                 height = 18;
                 break;
+            case 2:
+                textureX = column * 36;
+                textureY = 72;
+                width = 36;
+                height = 18;
+                break;
         }
         bar = (int)(height - height * bar);
         mc.getTextureManager().bindTexture(new ResourceLocation(Reference.MODID,"textures/gui/component.png"));

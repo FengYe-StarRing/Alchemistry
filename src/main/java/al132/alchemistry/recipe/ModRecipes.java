@@ -71,4 +71,8 @@ public class ModRecipes {
     public static void addSolidFuelCellRecipe(ItemStack fuel,FluidStack oxygen,int energy,int tick) {
         solidFuelCellRecipes.add(new SolidFuelCellRecipe(fuel,oxygen,energy,tick));
     }
+
+    public static void addDistillationChamberRecipe(int energy,int tick,FluidStack fluidInput,ItemStack itemInput,FluidStack fluidOutput,ItemStack itemOutput) {
+        distillationChamberRecipes.add(new DistillationChamberRecipe(energy,tick,fluidInput,itemInput,fluidOutput,itemOutput));
+    }
 }

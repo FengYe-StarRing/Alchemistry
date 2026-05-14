@@ -19,6 +19,7 @@ public class AlchemistryJEIPlugin implements IModPlugin {
     public static final String REFINERY_CHAMBER = Reference.MODID + ".refinery_chamber";
     public static final String FUEL_CELL = Reference.MODID + ".fuel_cell";
     public static final String SOLID_FUEL_CELL = Reference.MODID + ".solid_fuel_cell";
+    public static final String DISTILLATION_CHAMBER = Reference.MODID + ".distillation_chamber";
 
     @Override
     public void registerCategories(IRecipeCategoryRegistration registry) {
@@ -30,6 +31,7 @@ public class AlchemistryJEIPlugin implements IModPlugin {
         registry.addRecipeCategories(new RefineryChamberRecipeCategory(guiHelper));
         registry.addRecipeCategories(new FuelCellRecipeCategory(guiHelper));
         registry.addRecipeCategories(new SolidFuelCellRecipeCategory(guiHelper));
+        registry.addRecipeCategories(new DistillationChamberRecipeCategory(guiHelper));
     }
 
     @Override
@@ -55,5 +57,8 @@ public class AlchemistryJEIPlugin implements IModPlugin {
 
         registry.addRecipes(ModRecipes.solidFuelCellRecipes,SOLID_FUEL_CELL);
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.solidFuelCell),SOLID_FUEL_CELL);
+
+        registry.addRecipes(ModRecipes.distillationChamberRecipes,DISTILLATION_CHAMBER);
+        registry.addRecipeCatalyst(new ItemStack(ModBlocks.distillationChamber),DISTILLATION_CHAMBER);
     }
 }

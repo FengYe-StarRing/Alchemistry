@@ -1,6 +1,7 @@
 package al132.alchemistry.tileentity;
 
 import al132.alchemistry.energy.AlchemistryEnergyStorage;
+import al132.alchemistry.util.TickTimer;
 import al132.alib.tiles.ALTile;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
@@ -19,6 +20,7 @@ public abstract class TileEntityMachine extends ALTile implements ITickable {
     public final ItemStackHandler outputItemHandler;
     public final FluidTank[] fluidTanks;
     public final AlchemistryEnergyStorage energyStorage;
+    public final TickTimer timer = new TickTimer();
 
     public TileEntityMachine(ItemStackHandler inputItemHandler,ItemStackHandler outputItemHandler,FluidTank[] fluidTanks) {
         this.inputItemHandler = inputItemHandler;
@@ -84,6 +86,7 @@ public abstract class TileEntityMachine extends ALTile implements ITickable {
             fluidTanks[i].readFromNBT(compound.getCompoundTag("FluidTank" + i));
         }
         if(energyStorage != null) energyStorage.deserializeNBT(compound.getCompoundTag("EnergyStorage"));
+        timer.deserializeNBT(compound.getCompoundTag("Timer"));
     }
 
     @Override
@@ -95,6 +98,7 @@ public abstract class TileEntityMachine extends ALTile implements ITickable {
             compound.setTag("FluidTank" + i,fluidTanks[i].writeToNBT(new NBTTagCompound()));
         }
         if(energyStorage != null) compound.setTag("EnergyStorage",energyStorage.serializeNBT());
+        compound.setTag("Timer",timer.serializeNBT());
         return compound;
     }
 

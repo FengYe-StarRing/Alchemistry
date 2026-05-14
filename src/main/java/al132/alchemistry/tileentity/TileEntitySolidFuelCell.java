@@ -7,7 +7,6 @@ import al132.alchemistry.handler.OnlyOutputEnergyStorageHandler;
 import al132.alchemistry.recipe.ModRecipes;
 import al132.alchemistry.recipe.SolidFuelCellRecipe;
 import al132.alchemistry.util.EnergyUtil;
-import al132.alchemistry.util.TickTimer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -23,7 +22,6 @@ import org.jetbrains.annotations.Nullable;
 
 public class TileEntitySolidFuelCell extends TileEntityMachine {
     public final ItemStackHandler fuel = new ItemStackHandler();
-    public final TickTimer timer = new TickTimer();
     public int outputPower = 0;
     public int energy = 0;
     public int tick = 0;
@@ -56,7 +54,7 @@ public class TileEntitySolidFuelCell extends TileEntityMachine {
             }
         }
         // 生产能量
-        if(tick != 0 && energy != 0) {
+        if(tick != 0 && energy != 0 && energyStorage.getEnergyStored() == 0) {
             energyStorage.receiveEnergy(energy,false);
             if(timer.hasTimePassed(tick)) {
                 tick = 0;
@@ -117,7 +115,6 @@ public class TileEntitySolidFuelCell extends TileEntityMachine {
     public void readFromNBT(NBTTagCompound compound) {
         super.readFromNBT(compound);
         fuel.deserializeNBT(compound.getCompoundTag("Fuel"));
-        timer.deserializeNBT(compound.getCompoundTag("Timer"));
         outputPower = compound.getInteger("OutputPower");
         energy = compound.getInteger("Energy");
         tick = compound.getInteger("Tick");
@@ -127,7 +124,6 @@ public class TileEntitySolidFuelCell extends TileEntityMachine {
     public NBTTagCompound writeToNBT(NBTTagCompound compound) {
         super.writeToNBT(compound);
         compound.setTag("Fuel",fuel.serializeNBT());
-        compound.setTag("Timer",timer.serializeNBT());
         compound.setInteger("OutputPower",outputPower);
         compound.setInteger("Energy",energy);
         compound.setInteger("Tick",tick);

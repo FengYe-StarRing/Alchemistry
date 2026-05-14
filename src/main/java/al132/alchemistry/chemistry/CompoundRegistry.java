@@ -149,6 +149,10 @@ public class CompoundRegistry {
                 new CompoundPair("hydrogen",2),
                 new CompoundPair("sulfur",1)
         },new String[]{"fluid"});
+        addCompound("distilled_water",new Color(17,94,192),new CompoundPair[]{
+                new CompoundPair("hydrogen",2),
+                new CompoundPair("oxygen",1)
+        },new String[]{"fluid"});
     }
 
     public static ChemicalCompound addCompound(int meta,String name,Color color,List<CompoundPair> components,String[] materials) {

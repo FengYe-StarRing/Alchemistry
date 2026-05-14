@@ -7,9 +7,8 @@ import al132.alchemistry.handler.ThreeFluidHandler;
 import al132.alchemistry.recipe.ModRecipes;
 import al132.alchemistry.recipe.RefineryChamberRecipe;
 import al132.alchemistry.util.FluidTankUtil;
-import al132.alchemistry.util.TickTimer;
+import al132.alchemistry.util.ItemStackUtil;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
@@ -22,8 +21,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class TileEntityRefineryChamber extends TileEntityMachine {
-    public final TickTimer timer = new TickTimer();
-
     public TileEntityRefineryChamber() {
         super(new ItemStackHandler(6),new ItemStackHandler(7),new FluidTank[]{new FluidTank(2000),new FluidTank(2000),new FluidTank(1000),new FluidTank(1000),new FluidTank(1000),new FluidTank(1000)},new AlchemistryEnergyStorage(1000));
     }
@@ -117,13 +114,14 @@ public class TileEntityRefineryChamber extends TileEntityMachine {
             TileEntity tile = world.getTileEntity(pos.offset(facing));
             if(tile != null) {
                 FluidTankUtil.transfer(this,tile,null,facing.getOpposite());
+                ItemStackUtil.transfer(this,tile,null,facing.getOpposite());
             }
         }
         markDirty();
     }
 
     @Override
-    public boolean hasCapability(@NotNull Capability<?> capability, @Nullable EnumFacing facing) {
+    public boolean hasCapability(@NotNull Capability<?> capability,@Nullable EnumFacing facing) {
         if(capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
             return true;
         }
@@ -156,18 +154,5 @@ public class TileEntityRefineryChamber extends TileEntityMachine {
             return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(new OnlyOutputItemHandler(outputItemHandler,6,7));
         }
         return super.getCapability(capability,facing);
-    }
-
-    @Override
-    public void readFromNBT(NBTTagCompound compound) {
-        super.readFromNBT(compound);
-        timer.deserializeNBT(compound.getCompoundTag("Timer"));
-    }
-
-    @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
-        super.writeToNBT(compound);
-        compound.setTag("Timer",timer.serializeNBT());
-        return compound;
     }
 }
