@@ -23,7 +23,7 @@ public class GasTurbineRecipe implements IRecipeWrapper {
         for(FluidFuelBoilerRecipe recipe : ModRecipes.fluidFuelBoilerRecipes) {
             FluidStack stack = recipe.input.copy();
             stack.amount /= 1000;
-            ModRecipes.addGasTurbineRecipe(stack,recipe.fuel / ElementRegistry.CARBON_FURN_TIME);
+            ModRecipes.addGasTurbineRecipe(stack,recipe.fuel * 80 / ElementRegistry.CARBON_BURN_TIME);
         }
     }
 

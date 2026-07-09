@@ -8,15 +8,18 @@ import java.util.Set;
 public class ElementRegistry {
     private static final Map<Integer,ChemicalElement> elements = new HashMap<>();
 
-    public static final int CARBON_FURN_TIME = 1600;
+    public static final int CARBON_BURN_TIME = 1600;
+    public static final int CARBON_BURN_ENERGY = 1000;
+
+    public static ChemicalElement CARBON;
 
     public static void init() {
-        add(1,"hydrogen","H",new Color(0,0,255),new String[]{"fluid"}).setBurnTime(CARBON_FURN_TIME * 4);
+        add(1,"hydrogen","H",new Color(0,0,255),new String[]{"fluid"}).setBurnTime(CARBON_BURN_TIME * 4);
         add(2,"helium","He",new Color(255,0,0),new String[]{"fluid"});
         add(3,"lithium","Li",new Color(40,158,86));
         add(4,"beryllium","Be",new Color(184,199,224));
         add(5,"boron","B",new Color(154,176,226));
-        add(6,"carbon","C",new Color(59,60,63),new String[]{"ingot","dust"}).setBurnTime(CARBON_FURN_TIME);
+        CARBON = add(6,"carbon","C",new Color(59,60,63),new String[]{"ingot","dust"}).setBurnTime(CARBON_BURN_TIME);
         add(7,"nitrogen","N",new Color(66,123,214),new String[]{"fluid"});
         add(8,"oxygen","O",new Color(229,220,156),new String[]{"fluid"});
         add(9,"fluorine","F",new Color(204,186,55),new String[]{"fluid"});
@@ -25,8 +28,8 @@ public class ElementRegistry {
         add(12,"magnesium","Mg",new Color(237,178,173));
         add(13,"aluminum","Al",new Color(247,110,69));
         add(14,"silicon","Si",new Color(173,178,121));
-        add(15,"phosphorus","P",new Color(234,98,132),new String[]{"dust"}).setBurnTime(CARBON_FURN_TIME);
-        add(16,"sulfur","S",new Color(145,158,6),new String[]{"dust"}).setBurnTime(CARBON_FURN_TIME);
+        add(15,"phosphorus","P",new Color(234,98,132),new String[]{"dust"}).setBurnTime(CARBON_BURN_TIME);
+        add(16,"sulfur","S",new Color(145,158,6),new String[]{"dust"}).setBurnTime(CARBON_BURN_TIME);
         add(17,"chlorine","Cl",new Color(77,102,28),new String[]{"fluid"});
         add(18,"argon","Ar",new Color(119,117,255),new String[]{"fluid"});
         add(19,"potassium","K",new Color(198,152,95));
@@ -141,7 +144,7 @@ public class ElementRegistry {
                 return element;
             }
         }
-        return null;
+        return elements.get(1);
     }
 
     public static ChemicalElement add(int atomicNumber,String name,String abbreviation,Color color) {
@@ -158,7 +161,7 @@ public class ElementRegistry {
         return newElement;
     }
 
-    public static int getMeta(String name) {
+    public static int getAtomicNumber(String name) {
         for(Map.Entry<Integer,ChemicalElement> entry : elements.entrySet()) {
             if(entry.getValue().name.equals(name)) {
                 return entry.getKey();

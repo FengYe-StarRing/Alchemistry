@@ -27,6 +27,6 @@ open class CommonProxy {
     }
 
     open fun postInit(e: FMLPostInitializationEvent) {
-        ModRecipes.init()
+        ModRecipes.postInit()
     }
 }

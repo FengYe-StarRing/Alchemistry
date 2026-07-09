@@ -3,12 +3,24 @@ package al132.alchemistry.recipe;
 import al132.alchemistry.chemistry.ChemicalElement;
 import al132.alchemistry.chemistry.ElementRegistry;
 import al132.alchemistry.items.ModItems;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import hellfirepvp.modularmachinery.common.crafting.MachineRecipe;
+import hellfirepvp.modularmachinery.common.crafting.RecipeRegistry;
+import hellfirepvp.modularmachinery.common.crafting.adapter.RecipeAdapterAccessor;
+import hellfirepvp.modularmachinery.common.crafting.helper.ComponentRequirement;
+import hellfirepvp.modularmachinery.common.machine.DynamicMachine;
+import hellfirepvp.modularmachinery.common.machine.MachineRegistry;
+import hellfirepvp.modularmachinery.common.modifier.RecipeModifier;
 import kotlin.text.StringsKt;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
 
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,7 +34,14 @@ public class ModRecipes {
     public static final List<FuelCellRecipe> fuelCellRecipes = new ArrayList<>();
     public static final List<SolidFuelCellRecipe> solidFuelCellRecipes = new ArrayList<>();
 
-    public static void init() {
+    private static final Gson GSON = new GsonBuilder()
+        .registerTypeHierarchyAdapter(MachineRecipe.MachineRecipeContainer.class,new MachineRecipe.Deserializer())
+        .registerTypeHierarchyAdapter(ComponentRequirement.class,new MachineRecipe.ComponentDeserializer())
+        .registerTypeHierarchyAdapter(RecipeAdapterAccessor.class,new RecipeAdapterAccessor.Deserializer())
+        .registerTypeHierarchyAdapter(RecipeModifier.class,new RecipeModifier.Deserializer())
+        .create();
+
+    public static void postInit() {
         SolidFuelFiredBoilerRecipe.init();
         SteamTurbineRecipe.init();
         FluidFuelBoilerRecipe.init();
@@ -31,6 +50,8 @@ public class ModRecipes {
         DistillationChamberRecipe.init();
         FuelCellRecipe.init();
         SolidFuelCellRecipe.init();
+
+        addMultiblockRecipe("steam.json");
     }
 
     public static void initOredict() {
@@ -74,5 +95,18 @@ public class ModRecipes {
 
     public static void addDistillationChamberRecipe(int energy,int tick,FluidStack fluidInput,ItemStack itemInput,FluidStack fluidOutput,ItemStack itemOutput) {
         distillationChamberRecipes.add(new DistillationChamberRecipe(energy,tick,fluidInput,itemInput,fluidOutput,itemOutput));
+    }
+
+    public static void addMultiblockRecipe(String path) {
+        Map<DynamicMachine,List<MachineRecipe>> map = new HashMap<>();
+        Reader reader = new InputStreamReader(ModRecipes.class.getResourceAsStream("/assets/modularmachinery/recipes/" + path));
+        MachineRecipe.MachineRecipeContainer container = GSON.fromJson(reader,MachineRecipe.MachineRecipeContainer.class);
+        for (MachineRecipe recipe : container.getRecipes()) {
+            DynamicMachine machine = MachineRegistry.getRegistry().getMachine(recipe.getOwningMachine().getRegistryName());
+            if(machine != null) {
+                map.computeIfAbsent(machine,k -> new ArrayList<>()).add(recipe);
+            }
+        }
+        RecipeRegistry.registerRecipes(map);
     }
 }

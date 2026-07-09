@@ -71,4 +71,8 @@ public class CompoundPair {
         }
         return 0;
     }
+
+    public boolean isElement() {
+        return component instanceof ChemicalElement;
+    }
 }

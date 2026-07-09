@@ -22,7 +22,7 @@ public class SolidFuelFiredBoilerRecipe implements IRecipeWrapper {
     }
 
     public static void init() {
-        ModRecipes.addSolidFuelFiredBoilerRecipe(16,FluidRegistry.getFluidStack("water",1),FluidRegistry.getFluidStack("steam",1000));
+        ModRecipes.addSolidFuelFiredBoilerRecipe(1,FluidRegistry.getFluidStack("water",50),FluidRegistry.getFluidStack("steam",50));
     }
 
     public boolean match(FluidStack input) {

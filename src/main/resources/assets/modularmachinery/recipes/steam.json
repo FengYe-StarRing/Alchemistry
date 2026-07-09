@@ -1,0 +1,19 @@
+{
+  "machine": ["test_1","test_2"],
+  "registryName": "steam",
+  "recipeTime": 1,
+  "requirements": [
+    {
+      "type": "modularmachinery:fluid",
+      "io-type": "input",
+      "fluid": "water",
+      "amount": 50
+    },
+    {
+      "type": "modularmachinery:fluid",
+      "io-type": "output",
+      "fluid": "steam",
+      "amount": 50
+    }
+  ]
+}

@@ -31,21 +31,21 @@ public class SolidFuelCellRecipe implements IRecipeWrapper {
         for(Map.Entry<Integer,ChemicalElement> entry : ElementRegistry.get(new String[]{"dust"})) {
             ChemicalElement element = entry.getValue();
             if(element.burnTime > 0) {
-                ModRecipes.addSolidFuelCellRecipe(ModItems.INSTANCE.getElementDust().toStack(entry.getKey()),oxygen,element.burnTime / ElementRegistry.CARBON_FURN_TIME * 2,1000);
+                ModRecipes.addSolidFuelCellRecipe(ModItems.INSTANCE.getElementDust().toStack(entry.getKey()),oxygen,element.burnTime / ElementRegistry.CARBON_BURN_TIME * 2,1000);
             }
         }
         for(Map.Entry<Integer,ChemicalCompound> entry : CompoundRegistry.get(new String[]{"default"})) {
             ChemicalCompound compound = entry.getValue();
             int burnTime = compound.getBurnTime();
             if(burnTime > 0) {
-                ModRecipes.addSolidFuelCellRecipe(ModItems.INSTANCE.getCompounds().toStack(entry.getKey()),oxygen,burnTime / ElementRegistry.CARBON_FURN_TIME * 2,1000);
+                ModRecipes.addSolidFuelCellRecipe(ModItems.INSTANCE.getCompounds().toStack(entry.getKey()),oxygen,burnTime / ElementRegistry.CARBON_BURN_TIME * 2,1000);
             }
         }
         for(Map.Entry<Integer,ChemicalMixture> entry : MixtureRegistry.get(new String[]{"default"})) {
             ChemicalMixture mixture = entry.getValue();
             int burnTime = mixture.getBurnTime();
             if(burnTime > 0) {
-                ModRecipes.addSolidFuelCellRecipe(ModItems.INSTANCE.getMixture().toStack(entry.getKey()),oxygen,burnTime / ElementRegistry.CARBON_FURN_TIME * 2,1000);
+                ModRecipes.addSolidFuelCellRecipe(ModItems.INSTANCE.getMixture().toStack(entry.getKey()),oxygen,burnTime / ElementRegistry.CARBON_BURN_TIME * 2,1000);
             }
         }
     }

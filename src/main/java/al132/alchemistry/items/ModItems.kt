@@ -20,7 +20,7 @@ object ModItems {
     var elements = elementIngot
     val periodicDankMolecule = ItemPeriodicDiagram()
     var mixture = ItemMixture("mixture")
-    val structureTool = ItemStructureTool("structure_tool")
+    val storageBattery = ItemStorageBattery("storage_battery")
 
 
     fun registerItems(event: RegistryEvent.Register<Item>) {
@@ -42,6 +42,7 @@ object ModItems {
         itemColors.registerItemColorHandler(colorHandler,compoundDust)
         itemColors.registerItemColorHandler(colorHandler,elementDust)
         itemColors.registerItemColorHandler(colorHandler, mixture)
+        itemColors.registerItemColorHandler(colorHandler,storageBattery)
     }
 }
 

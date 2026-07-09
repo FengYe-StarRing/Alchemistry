@@ -27,7 +27,7 @@ public class FuelCellRecipe implements IRecipeWrapper {
         for(FluidFuelBoilerRecipe recipe : ModRecipes.fluidFuelBoilerRecipes) {
             FluidStack stack = recipe.input.copy();
             stack.amount /= 1000;
-            ModRecipes.addFuelCellRecipe(stack,FluidRegistry.getFluidStack("oxygen",stack.amount),recipe.fuel / ElementRegistry.CARBON_FURN_TIME * 2);
+            ModRecipes.addFuelCellRecipe(stack,FluidRegistry.getFluidStack("oxygen",stack.amount),recipe.fuel / ElementRegistry.CARBON_BURN_TIME * 2);
         }
     }
 

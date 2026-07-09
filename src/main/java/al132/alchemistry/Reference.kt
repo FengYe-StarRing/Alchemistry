@@ -8,11 +8,10 @@ import java.io.File
 import java.text.DecimalFormat
 
 object Reference {
-
     const val MODID = "alchemistry"
     const val MODNAME = "Alchemistry"
     const val VERSION = "1.12.2-1.0.0"
-    const val DEPENDENCIES = "required-after:forgelin;required-after:alib;after:crafttweaker;before:jei;"
+    const val DEPENDENCIES = "required-after:forgelin;required-after:alib;required-after:modularmachinery;after:crafttweaker;"
     val DECIMAL_FORMAT = DecimalFormat("#0.00")
 
     val pathPrefix = "alchemistry:"

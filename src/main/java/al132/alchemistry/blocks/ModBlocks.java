@@ -20,6 +20,7 @@ public class ModBlocks {
     public static final BlockBatteryBox batteryBox = new BlockBatteryBox("battery_box");
     public static final BlockFuelCell fuelCell = new BlockFuelCell("fuel_cell");
     public static final BlockSolidFuelCell solidFuelCell = new BlockSolidFuelCell("solid_fuel_cell");
+    public static final BlockReservoir reservoir = new BlockReservoir("reservoir");
 
     static {
         blocks.add(solidFuelFiredBoiler);
@@ -31,6 +32,7 @@ public class ModBlocks {
         blocks.add(batteryBox);
         blocks.add(fuelCell);
         blocks.add(solidFuelCell);
+        blocks.add(reservoir);
     }
 
     public static void registerBlocks(RegistryEvent.Register<Block> event) {

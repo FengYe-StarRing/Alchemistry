@@ -1,5 +1,6 @@
 package al132.alchemistry.recipe;
 
+import al132.alchemistry.chemistry.ElementRegistry;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.ingredients.VanillaTypes;
 import mezz.jei.api.recipe.IRecipeWrapper;
@@ -22,7 +23,7 @@ public class SteamTurbineRecipe implements IRecipeWrapper {
     }
 
     public static void init() {
-        ModRecipes.addSteamTurbineRecipe(FluidRegistry.getFluidStack("steam",1000),FluidRegistry.getFluidStack("water",1),10);
+        ModRecipes.addSteamTurbineRecipe(FluidRegistry.getFluidStack("steam",1),FluidRegistry.getFluidStack("water",1),ElementRegistry.CARBON_BURN_ENERGY / 1000);
     }
 
     public boolean match(FluidStack input) {

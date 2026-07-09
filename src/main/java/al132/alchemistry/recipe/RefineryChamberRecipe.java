@@ -70,7 +70,7 @@ public class RefineryChamberRecipe implements IRecipeWrapper {
                 FluidRegistry.getFluidStack("propylene",250),
                 FluidRegistry.getFluidStack("butadiene",250),
                 FluidRegistry.getFluidStack("butene",250),
-                ModItems.INSTANCE.getElementDust().toStack(ElementRegistry.getMeta("carbon"),1)
+                ModItems.INSTANCE.getElementDust().toStack(ElementRegistry.getAtomicNumber("carbon"),1)
         );
         ModRecipes.addRefineryChamberRecipe(10,100,
                 FluidRegistry.getFluidStack("naphtha",1000),
@@ -88,7 +88,7 @@ public class RefineryChamberRecipe implements IRecipeWrapper {
                 FluidRegistry.getFluidStack("hexene",250),
                 FluidRegistry.getFluidStack("heptene",250),
                 FluidRegistry.getFluidStack("octene",250),
-                ModItems.INSTANCE.getElementDust().toStack(ElementRegistry.getMeta("carbon"),1)
+                ModItems.INSTANCE.getElementDust().toStack(ElementRegistry.getAtomicNumber("carbon"),1)
         );
     }
 

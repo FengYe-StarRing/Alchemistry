@@ -14,7 +14,7 @@ import java.awt.*;
 @SideOnly(Side.CLIENT)
 public class ItemColorHandler implements IItemColor {
     @Override
-    public int colorMultiplier(ItemStack stack, int tintIndex) {
+    public int colorMultiplier(ItemStack stack,int tintIndex) {
         Item item = stack.getItem();
         int meta = stack.getMetadata();
 
@@ -30,6 +30,8 @@ public class ItemColorHandler implements IItemColor {
             return CompoundRegistry.get(meta).color.getRGB();
         } else if(item instanceof ItemMixture && MixtureRegistry.getMixtures().containsKey(meta)) {
             return MixtureRegistry.get(meta).color.getRGB();
+        } else if(item instanceof ItemStorageBattery && CompoundRegistry.keys().contains(meta)) {
+            return CompoundRegistry.get(meta).color.getRGB();
         }
         return Color.black.getRGB();
     }

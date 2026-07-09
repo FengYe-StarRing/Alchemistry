@@ -18,6 +18,7 @@ public class GuiHandler implements IGuiHandler {
     public static final int BATTERY_BOX = 7;
     public static final int FUEL_CELL = 8;
     public static final int SOLID_FUEL_CELL = 9;
+    public static final int RESERVOIR = 10;
 
     @Nullable
     @Override
@@ -42,6 +43,8 @@ public class GuiHandler implements IGuiHandler {
                 return new ContainerFuelCell(player,tileEntity);
             case SOLID_FUEL_CELL:
                 return new ContainerSolidFuelCell(player,tileEntity);
+            case RESERVOIR:
+                return new ContainerReservoir(player,tileEntity);
         }
         return null;
     }
@@ -69,6 +72,8 @@ public class GuiHandler implements IGuiHandler {
                 return new GuiFuelCell(player,tileEntity);
             case SOLID_FUEL_CELL:
                 return new GuiSolidFuelCell(player,tileEntity);
+            case RESERVOIR:
+                return new GuiReservoir(player,tileEntity);
         }
         return null;
     }

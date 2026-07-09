@@ -1,7 +1,9 @@
 package al132.alchemistry.tileentity;
 
 import al132.alchemistry.handler.SeriesEnergyStorageHandler;
+import al132.alchemistry.items.ItemStorageBattery;
 import al132.alchemistry.util.EnergyUtil;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
@@ -42,7 +44,14 @@ public class TileEntityBatteryBox extends TileEntityMachine {
     @Override
     public <T> T getCapability(@NotNull Capability<T> capability,@Nullable EnumFacing facing) {
         if(capability == CapabilityEnergy.ENERGY) {
-            return CapabilityEnergy.ENERGY.cast(new SeriesEnergyStorageHandler(inputItemHandler));
+            ItemStackHandler batteryItemHandler = new ItemStackHandler(inputItemHandler.getSlots());
+            for(int slot = 0;slot < inputItemHandler.getSlots();slot++) {
+                ItemStack stack = inputItemHandler.getStackInSlot(slot);
+                if(stack.getItem() instanceof ItemStorageBattery) {
+                    batteryItemHandler.setStackInSlot(slot,stack);
+                }
+            }
+            return CapabilityEnergy.ENERGY.cast(new SeriesEnergyStorageHandler(batteryItemHandler));
         }
         return super.getCapability(capability,facing);
     }

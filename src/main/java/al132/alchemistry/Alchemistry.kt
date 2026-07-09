@@ -3,6 +3,7 @@ package al132.alchemistry
 import al132.alchemistry.blocks.ModBlocks
 import al132.alchemistry.fluids.ModFluids
 import al132.alchemistry.items.ModItems
+import al132.alchemistry.multiblock.ModMultiblocks
 import crafttweaker.CraftTweakerAPI
 import crafttweaker.IAction
 import net.minecraft.block.Block
@@ -44,10 +45,13 @@ object Alchemistry {
     fun preInit(e: FMLPreInitializationEvent) {
         proxy!!.preInit(e)
         ModFluids.registerFluids()
+        ModMultiblocks.registerMultiblocks()
     }
 
     @EventHandler
-    fun init(e: FMLInitializationEvent) = proxy!!.init(e)
+    fun init(e: FMLInitializationEvent) {
+        proxy!!.init(e)
+    }
 
     @EventHandler
     fun postInit(e: FMLPostInitializationEvent) = proxy!!.postInit(e)
@@ -72,6 +76,7 @@ object Alchemistry {
         fun registerBlocks(event: RegistryEvent.Register<Block>) {
             ModBlocks.registerBlocks(event)
             ModFluids.registerBlocks(event)
+            ModMultiblocks.registerBlocks(event)
         }
 
         @JvmStatic
@@ -79,6 +84,7 @@ object Alchemistry {
         fun registerItems(event: RegistryEvent.Register<Item>) {
             ModBlocks.registerItems(event)
             ModItems.registerItems(event)
+            ModMultiblocks.registerItems(event)
         }
 
         @SideOnly(Side.CLIENT)

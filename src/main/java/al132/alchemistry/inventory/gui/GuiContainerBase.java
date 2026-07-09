@@ -121,7 +121,11 @@ public abstract class GuiContainerBase<T extends TileEntity> extends GuiContaine
     public void drawInfoBackground(String... texts) {
         int line = 3;
         if(uiType.equals("large")) line = 6;
-        RenderUtil.drawRect(guiLeft + 7,guiTop + 16,18 * 9,18 * line,Color.gray.getRGB());
+        RenderUtil.drawRect(guiLeft + 7,guiTop + 16,18 * 9,18 * line,Color.black.getRGB());
+        RenderUtil.drawRect(guiLeft + 6,guiTop + 15,18 * 9 + 2,1,Color.gray.getRGB());
+        RenderUtil.drawRect(guiLeft + 6,guiTop + 16 + 18 * line,18 * 9 + 2,1,Color.gray.getRGB());
+        RenderUtil.drawRect(guiLeft + 6,guiTop + 16,1,18 * line,Color.gray.getRGB());
+        RenderUtil.drawRect(guiLeft + 7 + 18 * 9,guiTop + 16,1,18 * line,Color.gray.getRGB());
         for(int i = 0;i < 6 && i < texts.length;i++) {
             fontRenderer.drawString(texts[i],guiLeft + 8,guiTop + 16 + fontRenderer.FONT_HEIGHT * i,Color.white.getRGB());
         }

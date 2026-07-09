@@ -13,6 +13,7 @@ tile.refinery_chamber.name=炼油室
 tile.battery_box.name=电池箱
 tile.fuel_cell.name=燃料电池
 tile.solid_fuel_cell.name=固体燃料电池
+tile.reservoir.name=水库
 
 gui.text0=运行状态: 未运行
 gui.text1=运行状态: 正在运行...
@@ -180,6 +181,12 @@ fluid.salt_water=盐水
 
 item.compound_dust_silicon_dioxide.name=二氧化硅
 item.compound_dust_sodium_chloride.name=氯化钠
+item.compound_dust_lithium_sulfide.name=硫化锂
+item.compound_dust_lithium_selenide.name=硒化锂
+item.compound_dust_sodium_sulfide.name=硫化钠
+item.compound_dust_sodium_selenide.name=硒化钠
+item.compound_dust_magnesium_sulfide.name=硫化镁
+item.compound_dust_calcium_sulfide.name=硫化钙
 
 item.compound_heptadecane.name=十七烷
 item.compound_octadecane.name=十八烷

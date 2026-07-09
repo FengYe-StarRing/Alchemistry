@@ -67,7 +67,7 @@ public class TileEntitySolidFuelFiredBoiler extends TileEntityMachine {
         }
         // 添加燃料
         if(!fuelItemStack.isEmpty() && burnTime < maxBurnTime) {
-            int fuel = TileEntityFurnace.getItemBurnTime(fuelItemStack);
+            int fuel = TileEntityFurnace.getItemBurnTime(fuelItemStack) / 80;
             if(fuel > 0) {
                 fuelItemStack.shrink(1);
                 burnTime += fuel;

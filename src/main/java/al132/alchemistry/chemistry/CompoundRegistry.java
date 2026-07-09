@@ -153,6 +153,30 @@ public class CompoundRegistry {
                 new CompoundPair("hydrogen",2),
                 new CompoundPair("oxygen",1)
         },new String[]{"fluid"});
+        addCompound("lithium_sulfide",new Color(255,255,255),new CompoundPair[]{
+            new CompoundPair("lithium",2),
+            new CompoundPair("sulfur",1)
+        },new String[]{"dust"});
+        addCompound("lithium_selenide",new Color(94,21,21),new CompoundPair[]{
+            new CompoundPair("lithium",2),
+            new CompoundPair("selenium",1)
+        },new String[]{"dust"});
+        addCompound("sodium_sulfide",new Color(200,200,150),new CompoundPair[]{
+            new CompoundPair("sodium",2),
+            new CompoundPair("sulfur",1)
+        },new String[]{"dust"});
+        addCompound("sodium_selenide",new Color(180,120,100),new CompoundPair[]{
+            new CompoundPair("sodium",2),
+            new CompoundPair("selenium",1)
+        },new String[]{"dust"});
+        addCompound("magnesium_sulfide",new Color(160,140,120),new CompoundPair[]{
+            new CompoundPair("magnesium",1),
+            new CompoundPair("sulfur",1)
+        },new String[]{"dust"});
+        addCompound("calcium_sulfide",new Color(220,210,180),new CompoundPair[]{
+            new CompoundPair("calcium",1),
+            new CompoundPair("sulfur",1)
+        },new String[]{"dust"});
     }
 
     public static ChemicalCompound addCompound(int meta,String name,Color color,List<CompoundPair> components,String[] materials) {

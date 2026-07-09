@@ -23,21 +23,21 @@ public class FluidFuelBoilerRecipe implements IRecipeWrapper {
     public static void init() {
         for(Map.Entry<Integer,ChemicalElement> entry : ElementRegistry.get(new String[]{"fluid"})) {
             ChemicalElement element = entry.getValue();
-            int burnTime = element.burnTime;
+            int burnTime = element.burnTime / 80;
             if(burnTime > 0) {
                 ModRecipes.addFluidFuelBoilerRecipe(FluidRegistry.getFluidStack(element.name,1000),burnTime);
             }
         }
         for(Map.Entry<Integer,ChemicalCompound> entry : CompoundRegistry.get(new String[]{"fluid"})) {
             ChemicalCompound compound = entry.getValue();
-            int burnTime = compound.getBurnTime();
+            int burnTime = compound.getBurnTime() / 80;
             if(burnTime > 0) {
                 ModRecipes.addFluidFuelBoilerRecipe(FluidRegistry.getFluidStack(compound.name,1000),burnTime);
             }
         }
         for(Map.Entry<Integer,ChemicalMixture> entry : MixtureRegistry.get(new String[]{"fluid"})) {
             ChemicalMixture mixture = entry.getValue();
-            int burnTime = mixture.getBurnTime();
+            int burnTime = mixture.getBurnTime() / 80;
             if(burnTime > 0) {
                 ModRecipes.addFluidFuelBoilerRecipe(FluidRegistry.getFluidStack(mixture.name,1000),burnTime);
             }

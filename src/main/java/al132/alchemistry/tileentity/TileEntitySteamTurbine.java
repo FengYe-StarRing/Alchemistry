@@ -21,7 +21,7 @@ public class TileEntitySteamTurbine extends TileEntityMachine {
     public int outputPower = 0;
 
     public TileEntitySteamTurbine() {
-        super(new FluidTank[]{new FluidTank(1000)},new AlchemistryEnergyStorage(Integer.MAX_VALUE));
+        super(new FluidTank[]{new FluidTank(50)},new AlchemistryEnergyStorage(Integer.MAX_VALUE));
     }
 
     @Override
